@@ -16,8 +16,8 @@ import os
 def detect_and_predict_mask(frame, faceNet, maskNet):
 	# grab the dimensions of the frame and then construct a blob
 	# from it
-	(h, w) = frame.shape[:2]
-	blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300),
+	(h, w) = frame.shape[:4]
+	blob = cv2.dnn.blobFromImage(frame, 1.0, (800, 800),
 		(104.0, 177.0, 123.0))
 
 	# pass the blob through the network and obtain the face detections
@@ -107,7 +107,7 @@ while True:
 	# grab the frame from the threaded video stream and resize it
 	# to have a maximum width of 400 pixels
 	frame = vs.read()
-	frame = imutils.resize(frame, width=400)
+	frame = imutils.resize(frame, width=1000)
 
 	# detect faces in the frame and determine if they are wearing a
 	# face mask or not
